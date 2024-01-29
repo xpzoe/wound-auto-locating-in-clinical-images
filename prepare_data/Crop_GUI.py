@@ -64,10 +64,8 @@ class App(QMainWindow, Ui_MainWindow):
         r_top =  int(event.y()*8 - cHeight/2) # r_top =  int(im_point_y - cHeight/2)
         r_bottom = int(event.y()*8 + cHeight/2) # r_bottom = int(im_point_y + cHeight/2) 
         print(f"[INFO] (r_left, r_right, r_top, r_top, r_bottom): {(r_left, r_right, r_top, r_bottom)}")
-
-
         
-        print(self.im.shape)
+        # print(self.im.shape)
         self.new_im = self.im
         self.new_im = self.new_im[max(0,int(r_top)):min(int(r_bottom),3456),max(0,int(r_left)):min(5184,int(r_right))] #(4056, 3040)
         print(f"cropped image size: {self.new_im.shape}")
@@ -141,8 +139,7 @@ class App(QMainWindow, Ui_MainWindow):
         #save_depth = os.path.join(save_depth, str(region)+".png")
         #cv.imwrite(save_depth, cropped_depth)
 
-
-
+    
     def closeEvent(self, event):
         print("[INFO] Close event called")
 
