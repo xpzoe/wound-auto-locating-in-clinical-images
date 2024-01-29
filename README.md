@@ -1,5 +1,5 @@
 # wound-auto-locating-in-clinical-images
-Decubitus ulcer is a severe concern for bedridden patients. Decubitus ulcers can form in multiple locations on the body's surface, especially in areas with prominent bone structures. Prevention and treatment of decubitus ulcers are possible but challenge physicians and caregivers. This repository uses deep learning to localize decubitus ulcer wounds on the skin surface, offering the possibility of automatic diagnosis. 
+Decubitus ulcer is a severe concern for bedridden patients and can form in multiple locations on the body's surface. Prevention and treatment of decubitus ulcers are possible but challenge physicians and caregivers. This repository uses deep learning to localize decubitus ulcer wounds on the skin surface, offering the possibility of automatic diagnosis. 
 
 # Dataset
 A dataset of decubitus ulcer is created and proved valid. This dataset categorizes images into 11 classes indicating where the wound locates. Contact xpzoe522@outlook.com for more information.
