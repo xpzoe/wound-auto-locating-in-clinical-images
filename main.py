@@ -1,10 +1,10 @@
 import torch
 from torch import nn, optim
 from torch.optim import lr_scheduler
-from my_models_torch import my_vgg16, my_resnet50, my_inceptionv3,my_vgg19, my_vgg16_two, my_vgg19_two
+from my_models_torch import my_vgg16, my_resnet50, my_inceptionv3,my_vgg19
 from training import train_model
 from testing import eval_model
-from prepare_dataset_new import  load_data, load_data_testonreal
+from prepare_data.prepare_dataset import  load_data, load_data_testonreal
 from datetime import datetime
 import os
 import pickle
