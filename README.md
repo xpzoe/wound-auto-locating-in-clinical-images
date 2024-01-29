@@ -1,4 +1,10 @@
 # wound-auto-locating-in-clinical-images
+Decubitus ulcer is a severe concern for bedridden patients. One in five bedridden patients suffers from decubitus ulcers, and in severe cases, they can cause complications that can endanger the patient's body and even lead to death. Decubitus ulcers can form in multiple locations on the body's surface, especially in areas with prominent bone structures. Prevention and treatment of decubitus ulcers are possible but challenge physicians and caregivers. This repository uses deep learning to localize decubitus ulcer wounds on the skin surface, offering the possibility of automatic diagnosis. 
+
+# Dataset
+A dataset of decubitus ulcer is created and proved valid. This dataset categorizes images into 11 classes indicating where the wound locates. Contact xpzoe522@outlook.com for more information.
+
+A labeling GUI and a cropping GUI are provided. The later one can be used for refining raw images to center the interested content. Images should be gathered in folders according to categorise.
 
 # Run
 ```
@@ -17,3 +23,10 @@ regression
 evaluate
     |---
 ```
+1. Prepare dataset by gathering images in category folders;
+2. Execute main.py;
+3. Test result will be saved in given paths.
+
+# Todo
+* add regression part
+* add evaluate folder
