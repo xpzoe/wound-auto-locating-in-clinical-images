@@ -25,5 +25,7 @@ evaluate
 2. Execute main.py;
 3. Test result will be saved in given paths.
 
+In evaluate.py, functions are provided to evaluate testing performances and visualize results.
+
 # Todo
 * add regression part
