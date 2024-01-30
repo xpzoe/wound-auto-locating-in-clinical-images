@@ -18,10 +18,8 @@ prepare_data
     |--- Labeling_Gui.py
     |--- Labeling.ui
     |--- prepare_dataset.py
-regression
-    |---
 evaluate
-    |---
+    |--- evaluate.py
 ```
 1. Prepare dataset by gathering images in category folders;
 2. Execute main.py;
@@ -29,4 +27,3 @@ evaluate
 
 # Todo
 * add regression part
-* add evaluate folder
