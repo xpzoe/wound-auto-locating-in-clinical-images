@@ -6,6 +6,7 @@ from torchvision.io import read_image
 from torchvision import transforms
 import pickle
 import tqdm
+import numpy as np
 
 
 def transformers_f(network_name):
@@ -167,21 +168,38 @@ def load_data(data_dir, network_name):
     dataset = MyDataset(annotation_file, data_dir, transform=transformers['default'], target_transform=None)
 
     # randomly splite dataset to 3 subsets
-    train_ratio = 0.7
-    val_ratio = 0.1
-    test_ratio = 0.2
+    train_ratio = 1.0
+    val_ratio = 0.2
+    test_ratio = 0.3
 
     train_size = int(len(dataset) * train_ratio)
-    val_size = int(len(dataset) * val_ratio)
-    test_size = len(dataset) - train_size - val_size
+    # val_size = int(len(dataset) * val_ratio)
+    # test_size = int(len(dataset) * test_ratio)
 
-    train_dataset, val_dataset, test_dataset = random_split(dataset, [train_size, val_size, test_size])
+    np.random.seed(random_seed)
+    
+    train_indices = np.random.choice(dataset_size, size=train_size, replace=True)
+
+    remaining_indices = np.setdiff1d(np.arange(dataset_size), train_indices)
+    test_size = int(len(remaining_indices) * test_ratio / (1 - test_ratio - validation_ratio))
+    test_indices = np.random.choice(remaining_indices, size=test_size, replace=False)
+
+    validation_indices = np.setdiff1d(remaining_indices, test_indices)
+
+    train_sampler = torch.utils.data.SubsetRandomSampler(train_indices)
+    val_sampler = torch.utils.data.SubsetRandomSampler(val_indices)
+    test_sampler = torch.utils.data.SubsetRandomSampler(test_indices)
 
     batch_size = 4
-    shuffle = True
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle)
-    val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=shuffle)
-    test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=shuffle)
+    train_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, sampler=train_sampler)
+    val_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, sampler=val_sampler)
+    test_loader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, sampler=test_sampler)
+
+    # train_dataset, val_dataset, test_dataset = random_split(dataset, [train_size, val_size, test_size])
+    # shuffle = True
+    # train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle)
+    # val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=shuffle)
+    # test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=shuffle)
 
     # apply augmentation transforms 
     for images, _, _ in train_loader:
